@@ -1,0 +1,326 @@
+<!-- New professional grey/black/white themed portfolio with scroll animations, pop-ups, etc. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thomas de Chillaz | AI & Data Science</title>
+
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f0f0f;
+            color: #e5e5e5;
+            overflow-x:hidden;
+        }
+
+        /* Smooth scroll reveal */
+        .reveal { opacity:0; transform: translateY(40px); transition: all 0.9s ease; }
+        .reveal.active { opacity:1; transform: translateY(0); }
+
+        header {
+            padding: 120px 20px 80px;
+            text-align:center;
+            position:relative;
+        }
+        .profile-photo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+            margin-bottom: 25px;
+            box-shadow: 0 0 25px rgba(255,255,255,0.15);
+        }
+
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight:700;
+            color:white;
+            margin-bottom:10px;
+        }
+
+        .tagline {
+            font-size:1.2rem;
+            color:#bfbfbf;
+            margin-bottom:15px;
+        }
+
+        .quote {
+            font-style:italic;
+            color:#9f9f9f;
+            margin-top:10px;
+        }
+
+        .contact-links {
+            display:flex;
+            justify-content:center;
+            gap:15px;
+            margin-top:25px;
+        }
+
+        .contact-links a {
+            padding:10px 22px;
+            color:black;
+            background:white;
+            border-radius:30px;
+            font-size:0.9rem;
+            text-decoration:none;
+            transition:0.3s;
+        }
+
+        .contact-links a:hover {
+            transform:translateY(-4px);
+            background:#dcdcdc;
+        }
+
+        .section {
+            width:90%;
+            max-width:1100px;
+            margin:70px auto;
+            background:#1a1a1a;
+            padding:50px;
+            border-radius:20px;
+            border:1px solid #333;
+            box-shadow:0 0 30px rgba(255,255,255,0.04);
+        }
+
+        .section h2 {
+            font-size:2.2rem;
+            font-weight:600;
+            margin-bottom:25px;
+            border-left:5px solid white;
+            padding-left:15px;
+        }
+
+        .cards {
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+            gap:25px;
+        }
+
+        .card {
+            background:#111;
+            padding:25px;
+            border-radius:15px;
+            border:1px solid #2c2c2c;
+            transition:0.3s;
+        }
+
+        .card:hover { transform:translateY(-6px); }
+
+        .card h3 { margin-bottom:10px; color:white; }
+        .card p { color:#c9c9c9; line-height:1.5; }
+
+        .skills-grid {
+            display:flex; flex-wrap:wrap; gap:12px;
+        }
+
+        .skill-tag {
+            padding:10px 20px;
+            background:white;
+            color:black;
+            border-radius:20px;
+            font-size:0.9rem;
+            transition:0.3s;
+        }
+
+        .skill-tag:hover { transform:scale(1.1); }
+
+        /* Pop-up modal */
+        .modal-bg {
+            position:fixed;
+            top:0; left:0;
+            width:100%; height:100%;
+            background:rgba(0,0,0,0.7);
+            display:none;
+            justify-content:center;
+            align-items:center;
+            z-index:10;
+        }
+
+        .modal {
+            background:#1a1a1a;
+            padding:40px;
+            border-radius:15px;
+            width:90%; max-width:500px;
+            border:1px solid #444;
+            text-align:center;
+        }
+
+        .close-btn {
+            margin-top:20px;
+            padding:8px 18px;
+            background:white;
+            color:black;
+            border-radius:20px;
+            cursor:pointer;
+        }
+
+        .popup-button {
+            margin-top:40px;
+            padding:12px 25px;
+            background:white;
+            color:black;
+            font-weight:600;
+            border-radius:30px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .popup-button:hover { transform:translateY(-4px); }
+
+        @media (max-width: 768px) {
+            h1 { font-size:2.3rem; }
+            .section { padding:30px; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="reveal">
+    <img src="thomasdechillaz.jpg" alt="Profile Photo" class="profile-photo">
+    <h1>Thomas de Chillaz</h1>
+    <div class="tagline">AI Student • Data Scientist • Content Creator</div>
+    <div class="quote">"What is worth doing, is worth doing well"</div>
+    <div class="contact-links">
+        <a href="mailto:tdechillaz@gmail.com">Email</a>
+        <a href="https://github.com/ThomasDC2007" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/thomas-de-chillaz-9382b62a0" target="_blank">LinkedIn</a>
+    </div>
+    <button class="popup-button" onclick="openModal()">More About Me</button>
+</header>
+
+<div class="section reveal">
+    <h2>About Me</h2>
+    <p>Driven and curious undergraduate student in a dual-degree program at <strong>CentraleSupélec</strong> and <strong>ESSEC Business School</strong>, passionate about data science, programming, and applied mathematics. I enjoy turning ideas into concrete tools from step-by-step integral calculators to data‑driven prediction models.</p>
+</div>
+
+<div class="section reveal">
+    <h2>Education</h2>
+    <div class="cards">
+        <div class="card">
+            <h3>CentraleSupélec & ESSEC</h3>
+            <p><strong>Bachelor of AI, Data & Management Sciences</strong></p>
+            <p>2025–2029</p>
+            <p>Dual-degree program combining technical excellence with business strategy.</p>
+        </div>
+        <div class="card">
+            <h3>École Jeannine Manuel</h3>
+            <p><strong>French International Baccalaureate</strong></p>
+            <p>2023–2025 • Highest Honor</p>
+            <p>Specialty: Mathematics, Physics & Chemistry</p>
+            <p>Expert level: Mathematics</p>
+        </div>
+    </div>
+</div>
+
+<div class="section reveal">
+    <h2>Experience</h2>
+    <div class="cards">
+        <div class="card">
+            <h3>The Curious Minds</h3>
+            <p><strong>Founder & Content Strategist</strong> | 2023–Present</p>
+            <p>60M+ views across TikTok, Instagram, and YouTube.</p>
+            <p>Built multi‑platform educational ecosystem.</p>
+        </div>
+        <div class="card">
+            <h3>SONEKA - Paris</h3>
+            <p><strong>Intern</strong> | March 2022</p>
+            <p>Data organization, teamwork, workflow observations.</p>
+        </div>
+    </div>
+</div>
+
+<div class="section reveal">
+    <h2>Projects</h2>
+    <div class="cards">
+        <div class="card">
+            <h3>Facial Recognition Algorithm</h3>
+            <p>OpenCV + NumPy preprocessing work. Published on GitHub.</p>
+        </div>
+        <div class="card">
+            <h3>Rent Prediction ML Model</h3>
+            <p>PyTorch, pandas, scikit-learn model to predict rent prices.</p>
+        </div>
+        <div class="card">
+            <h3>Educational Website</h3>
+            <p>Designed and deployed a scientific knowledge platform.</p>
+        </div>
+    </div>
+</div>
+
+<div class="section reveal">
+    <h2>Skills & Technologies</h2>
+    <div class="skills-grid">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Machine Learning</span>
+        <span class="skill-tag">PyTorch</span>
+        <span class="skill-tag">Pandas</span>
+        <span class="skill-tag">NumPy</span>
+        <span class="skill-tag">Scikit‑learn</span>
+        <span class="skill-tag">OpenCV</span>
+        <span class="skill-tag">HTML & CSS</span>
+        <span class="skill-tag">Cursor</span>
+        <span class="skill-tag">Data Structures</span>
+        <span class="skill-tag">French & English</span>
+        <span class="skill-tag">Logical Thinking</span>
+        <span class="skill-tag">Self-Learning</span>
+    </div>
+</div>
+
+<div class="section reveal">
+    <h2>Certificates & Achievements</h2>
+    <div class="cards">
+        <div class="card">
+            <h3>Stanford University Course</h3>
+            <p>Understanding Einstein: Special Relativity (2024)</p>
+        </div>
+        <div class="card">
+            <h3>Meta Digital Marketing Associate</h3>
+            <p>Meta Course (2025)</p>
+        </div>
+        <div class="card">
+            <h3>GMTK Hackathon</h3>
+            <p>48‑hour Game Development Challenge (2024)</p>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal-bg" id="modalBg">
+    <div class="modal">
+        <h3>More About Me</h3>
+        <p>I love building tools, solving real‑world problems with data, and exploring the intersection of engineering and creativity.</p>
+        <div class="close-btn" onclick="closeModal()">Close</div>
+    </div>
+</div>
+
+<script>
+// Scroll reveal animation
+const reveals = document.querySelectorAll('.reveal');
+function reveal() {
+  for (let i = 0; i < reveals.length; i++) {
+    const windowHeight = window.innerHeight;
+    const elementTop = reveals[i].getBoundingClientRect().top;
+    if (elementTop < windowHeight - 80) {
+      reveals[i].classList.add('active');
+    }
+  }
+}
+window.addEventListener('scroll', reveal);
+reveal();
+
+// Modal functions
+function openModal() {
+    document.getElementById('modalBg').style.display = 'flex';
+}
+function closeModal() {
+    document.getElementById('modalBg').style.display = 'none';
+}
+</script>
+
+</body>
+</html>
