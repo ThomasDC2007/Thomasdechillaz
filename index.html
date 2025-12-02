@@ -1,46 +1,133 @@
-<!-- New professional grey/black/white themed portfolio with scroll animations, pop-ups, etc. -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thomas de Chillaz | AI & Data Science</title>
 
-  <title>Thomas de Chillaz | AI & Data Science</title>
-
-  <!-- SEO Meta Tags -->
-  <meta name="description" 
-        content="Portfolio of Thomas de Chillaz, AI & Data Science student passionate about machine learning, programming, applied mathematics, and building innovative digital projects.">
-
-  <meta name="keywords" 
-        content="Thomas de Chillaz, AI student, data science, machine learning, Python developer, portfolio, data analytics, CentraleSupelec, ESSEC, math, programming">
-
-  <meta name="author" content="Thomas de Chillaz">
-
-
-  <meta property="og:title" content="Thomas de Chillaz | AI & Data Science">
-  <meta property="og:description" content="AI & Data Science portfolio: projects, education, skills, and research by Thomas de Chillaz.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://thomasdechillaz.com/thomasdechillaz.jpg">
-  <meta property="og:url" content="https://thomasdechillaz.com/">
-
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Thomas de Chillaz | AI & Data Science">
-  <meta name="twitter:description" content="Portfolio showcasing AI, data science, and programming work.">
-  <meta name="twitter:image" content="https://thomasdechillaz.com/thomasdechillaz.jpg">
-
-
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
-
-
-  <style>
-
+    <style>
         * { margin:0; padding:0; box-sizing:border-box; }
         body {
             font-family: 'Inter', sans-serif;
-            background: #0f0f0f;
             color: #e5e5e5;
             overflow-x:hidden;
+            position: relative;
+        }
+
+        /* Gradient Background */
+        .gradient-bg {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            overflow: hidden;
+            background: linear-gradient(40deg, rgb(108, 0, 162), rgb(0, 17, 82));
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .gradient-bg svg {
+            display: none;
+        }
+
+        .gradients-container {
+            filter: url(#goo) blur(50px);
+            width: 100%;
+            height: 100%;
+        }
+
+        .g1 {
+            position: absolute;
+            background: radial-gradient(circle at center, rgba(18, 113, 255, 0.8) 0, rgba(18, 113, 255, 0) 50%) no-repeat;
+            mix-blend-mode: hard-light;
+            width: 80%;
+            height: 80%;
+            top: calc(50% - 40%);
+            left: calc(50% - 40%);
+            transform-origin: center center;
+            animation: moveVertical 30s ease infinite;
+            opacity: 1;
+        }
+
+        .g2 {
+            position: absolute;
+            background: radial-gradient(circle at center, rgba(221, 74, 255, 0.8) 0, rgba(221, 74, 255, 0) 50%) no-repeat;
+            mix-blend-mode: hard-light;
+            width: 80%;
+            height: 80%;
+            top: calc(50% - 40%);
+            left: calc(50% - 40%);
+            transform-origin: calc(50% - 400px);
+            animation: moveInCircle 20s reverse infinite;
+            opacity: 1;
+        }
+
+        .g3 {
+            position: absolute;
+            background: radial-gradient(circle at center, rgba(100, 220, 255, 0.8) 0, rgba(100, 220, 255, 0) 50%) no-repeat;
+            mix-blend-mode: hard-light;
+            width: 80%;
+            height: 80%;
+            top: calc(50% - 40% + 200px);
+            left: calc(50% - 40% - 500px);
+            transform-origin: calc(50% + 400px);
+            animation: moveInCircle 40s linear infinite;
+            opacity: 1;
+        }
+
+        .g4 {
+            position: absolute;
+            background: radial-gradient(circle at center, rgba(200, 50, 50, 0.8) 0, rgba(200, 50, 50, 0) 50%) no-repeat;
+            mix-blend-mode: hard-light;
+            width: 80%;
+            height: 80%;
+            top: calc(50% - 40%);
+            left: calc(50% - 40%);
+            transform-origin: calc(50% - 200px);
+            animation: moveHorizontal 40s ease infinite;
+            opacity: 0.7;
+        }
+
+        .g5 {
+            position: absolute;
+            background: radial-gradient(circle at center, rgba(180, 180, 50, 0.8) 0, rgba(180, 180, 50, 0) 50%) no-repeat;
+            mix-blend-mode: hard-light;
+            width: 160%;
+            height: 160%;
+            top: calc(50% - 80%);
+            left: calc(50% - 80%);
+            transform-origin: calc(50% - 800px) calc(50% + 200px);
+            animation: moveInCircle 20s ease infinite;
+            opacity: 1;
+        }
+
+        .interactive {
+            position: absolute;
+            background: radial-gradient(circle at center, rgba(140, 100, 255, 0.8) 0, rgba(140, 100, 255, 0) 50%) no-repeat;
+            mix-blend-mode: hard-light;
+            width: 100%;
+            height: 100%;
+            top: -50%;
+            left: -50%;
+            opacity: 0.7;
+        }
+
+        @keyframes moveInCircle {
+            0% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes moveVertical {
+            0% { transform: translateY(-50%); }
+            50% { transform: translateY(50%); }
+            100% { transform: translateY(-50%); }
+        }
+
+        @keyframes moveHorizontal {
+            0% { transform: translateX(-50%) translateY(-10%); }
+            50% { transform: translateX(50%) translateY(10%); }
+            100% { transform: translateX(-50%) translateY(-10%); }
         }
 
         /* Smooth scroll reveal */
@@ -108,7 +195,8 @@
             width:90%;
             max-width:1100px;
             margin:70px auto;
-            background:#1a1a1a;
+            background:rgba(26, 26, 26, 0.85);
+            backdrop-filter: blur(10px);
             padding:50px;
             border-radius:20px;
             border:1px solid #333;
@@ -130,7 +218,8 @@
         }
 
         .card {
-            background:#111;
+            background:rgba(17, 17, 17, 0.8);
+            backdrop-filter: blur(5px);
             padding:25px;
             border-radius:15px;
             border:1px solid #2c2c2c;
@@ -163,6 +252,7 @@
             top:0; left:0;
             width:100%; height:100%;
             background:rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
             display:none;
             justify-content:center;
             align-items:center;
@@ -170,7 +260,8 @@
         }
 
         .modal {
-            background:#1a1a1a;
+            background:rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
             padding:40px;
             border-radius:15px;
             width:90%; max-width:500px;
@@ -208,10 +299,31 @@
 </head>
 <body>
 
+<!-- Gradient Background -->
+<div class="gradient-bg">
+    <svg xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
+                <feBlend in="SourceGraphic" in2="goo" />
+            </filter>
+        </defs>
+    </svg>
+    <div class="gradients-container">
+        <div class="g1"></div>
+        <div class="g2"></div>
+        <div class="g3"></div>
+        <div class="g4"></div>
+        <div class="g5"></div>
+        <div class="interactive"></div>
+    </div>
+</div>
+
 <header class="reveal">
     <img src="thomasdechillaz.jpg" alt="Profile Photo" class="profile-photo">
     <h1>Thomas de Chillaz</h1>
-    <div class="tagline">AI Student • Data Science Student • Content Creator</div>
+    <div class="tagline">AI Student • Data Scientist • Content Creator</div>
     <div class="quote">"What is worth doing, is worth doing well"</div>
     <div class="contact-links">
         <a href="mailto:tdechillaz@gmail.com">Email</a>
@@ -348,9 +460,31 @@ function openModal() {
 function closeModal() {
     document.getElementById('modalBg').style.display = 'none';
 }
+
+// Interactive bubble that follows mouse
+const interBubble = document.querySelector('.interactive');
+let curX = 0;
+let curY = 0;
+let tgX = 0;
+let tgY = 0;
+
+function move() {
+    curX += (tgX - curX) / 20;
+    curY += (tgY - curY) / 20;
+    interBubble.style.transform = `translate(${Math.round(curX)}px, ${Math.round(curY)}px)`;
+    requestAnimationFrame(() => {
+        move();
+    });
+}
+
+window.addEventListener('mousemove', (event) => {
+    tgX = event.clientX;
+    tgY = event.clientY;
+});
+
+move();
 </script>
 
 </body>
 </html>
-
 
